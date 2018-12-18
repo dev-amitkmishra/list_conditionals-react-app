@@ -3,6 +3,7 @@ import './App.css';
 import Person from './Person/Person';
 import UserOutput from './UserOutput/UserOutput';
 import UserInput from './UserInput/UserInput';
+import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
   state = {
@@ -75,12 +76,17 @@ class App extends Component {
     this.setState({users: users});
   }
   render() {
-    const myStyle = {
-      background: '#fff',
+    const style = {
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid #eee',
       padding: '10px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
     let persons = null;
 
@@ -96,22 +102,38 @@ class App extends Component {
           <Person name={this.state.users[2].name}/> */}
         </div>
       )
+      style.backgroundColor = 'Red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
+    }
+
+    let classes = [];
+    if (this.state.users.length <= 2) {
+      classes.push('red');
+    } 
+    if (this.state.users.length <= 1) {
+      classes.push('bold');
     }
     return (
-      <div className="App">
-        <h1>React App</h1>
-        <button style={myStyle} onClick={this.toggleEventHandler}>Click Me</button>
-        {persons}
-        <UserOutput username={this.state.username[0].name}/>
-        <UserOutput username={this.state.username[1].name} />
-        <UserInput eventHandle={this.eventHandler}  name={this.state.username[0].name}/>
-        {/* <Person data={this.state.content}/>
-        <Person data={this.state.content}>
-          <p paragraphData={this.state.childContent}>sample text</p>
-        </Person> */}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>React App</h1>
+          <p className={classes.join(' ')}>App is working with React!</p>
+          <button style={style} onClick={this.toggleEventHandler}>Click Me</button>
+          {persons}
+          <UserOutput username={this.state.username[0].name}/>
+          <UserOutput username={this.state.username[1].name} />
+          <UserInput eventHandle={this.eventHandler}  name={this.state.username[0].name}/>
+          {/* <Person data={this.state.content}/>
+          <Person data={this.state.content}>
+            <p paragraphData={this.state.childContent}>sample text</p>
+          </Person> */}
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
