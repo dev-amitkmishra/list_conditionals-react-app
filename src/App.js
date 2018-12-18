@@ -3,7 +3,6 @@ import './App.css';
 import Person from './Person/Person';
 import UserOutput from './UserOutput/UserOutput';
 import UserInput from './UserInput/UserInput';
-import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
   state = {
@@ -26,7 +25,6 @@ class App extends Component {
   };
 
   clickHandler = (newName) => {
-    debugger;
     this.setState({
       users: [
         {name: 'Amit', age: 30},
@@ -82,11 +80,7 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid #eee',
       padding: '10px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
+      cursor: 'pointer'
     };
     let persons = null;
 
@@ -117,7 +111,6 @@ class App extends Component {
       classes.push('bold');
     }
     return (
-      <StyleRoot>
         <div className="App">
           <h1>React App</h1>
           <p className={classes.join(' ')}>App is working with React!</p>
@@ -131,9 +124,8 @@ class App extends Component {
             <p paragraphData={this.state.childContent}>sample text</p>
           </Person> */}
         </div>
-      </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;

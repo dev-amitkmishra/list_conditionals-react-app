@@ -1,6 +1,5 @@
 import React from 'react';
 import './Person.css'
-import Radium from 'radium';
 
 // const Person = (props) => {
 //     console.log(props);
@@ -21,17 +20,12 @@ import Radium from 'radium';
 // }
 
 const Person = (props) => {
-    const style = {
-        '@media (min-width: 500px)': {
-            width: '450px'
-        }
-    }
     return (
-        <div className="Person" style={style}>
+        <div className="Person">
             <p onClick={props.clickHandler}>my name is {props.name}</p>
             <input type="text" onChange={props.changeHandler} defaultValue={props.name}/>
         </div>
     )
 }
 
-export default Radium(Person);
+export default Person;
