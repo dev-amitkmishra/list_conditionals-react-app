@@ -6,3 +6,14 @@
     padding: 15px;
     text-align: center;
 }
+
+.Person:hover {
+    background: lightgreen;
+
+}
+
+@media (min-width: 500px) {
+    .Person {
+        width: 450px;
+    }
+}

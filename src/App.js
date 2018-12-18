@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 import UserOutput from './UserOutput/UserOutput';
 import UserInput from './UserInput/UserInput';
@@ -74,16 +74,9 @@ class App extends Component {
     this.setState({users: users});
   }
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid #eee',
-      padding: '10px',
-      cursor: 'pointer'
-    };
-    let persons = null;
 
+    let persons = null;
+    let btnClass = '';
     if(this.state.isToggle) {
       persons = (
         <div>
@@ -96,25 +89,14 @@ class App extends Component {
           <Person name={this.state.users[2].name}/> */}
         </div>
       )
-      style.backgroundColor = 'Red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
+      btnClass = classes.Red;
     }
 
-    let classes = [];
-    if (this.state.users.length <= 2) {
-      classes.push('red');
-    } 
-    if (this.state.users.length <= 1) {
-      classes.push('bold');
-    }
     return (
-        <div className="App">
+        <div className={classes.App}>
           <h1>React App</h1>
-          <p className={classes.join(' ')}>App is working with React!</p>
-          <button style={style} onClick={this.toggleEventHandler}>Click Me</button>
+          <p className=''>App is working with React!</p>
+          <button className={btnClass} onClick={this.toggleEventHandler}>Click Me</button>
           {persons}
           <UserOutput username={this.state.username[0].name}/>
           <UserOutput username={this.state.username[1].name} />

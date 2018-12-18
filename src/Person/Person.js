@@ -1,5 +1,5 @@
 import React from 'react';
-import './Person.css'
+import classes from './Person.css'
 
 // const Person = (props) => {
 //     console.log(props);
@@ -21,7 +21,7 @@ import './Person.css'
 
 const Person = (props) => {
     return (
-        <div className="Person">
+        <div className={classes.Person}>
             <p onClick={props.clickHandler}>my name is {props.name}</p>
             <input type="text" onChange={props.changeHandler} defaultValue={props.name}/>
         </div>
