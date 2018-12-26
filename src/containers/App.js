@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
 import UserOutput from '../components/UserOutput/UserOutput';
 import UserInput from '../components/UserInput/UserInput';
 
@@ -80,13 +80,9 @@ class App extends Component {
     if(this.state.isToggle) {
       persons = (
         <div>
-          {this.state.users.map((user, index) => {
-            // return <Person name={user.name} changeHandler={this.changeHandler} clickHandler={this.clickHandler.bind(this, 'Kumar')}/>
-            return <Person name={user.name} key= {user.id} changeHandler={(event) => this.changeHandler(event, user.id)} clickHandler={this.deleteHandler.bind(this, index)}/>
-          })}
-          {/* <Person name={this.state.users[0].name}/>
-          <Person changeHandler={this.changeHandler} clickHandler={this.clickHandler.bind(this, 'Kumar')} name={this.state.users[1].name}/>
-          <Person name={this.state.users[2].name}/> */}
+          <Persons users={this.state.users}
+            changed={this.changeHandler} 
+            clicked={this.deleteHandler}/>
         </div>
       )
       btnClass = classes.Red;
@@ -101,10 +97,6 @@ class App extends Component {
           <UserOutput username={this.state.username[0].name}/>
           <UserOutput username={this.state.username[1].name} />
           <UserInput eventHandle={this.eventHandler}  name={this.state.username[0].name}/>
-          {/* <Person data={this.state.content}/>
-          <Person data={this.state.content}>
-            <p paragraphData={this.state.childContent}>sample text</p>
-          </Person> */}
         </div>
     );
   }
