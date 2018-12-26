@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from './Person/Person';
-import UserOutput from './UserOutput/UserOutput';
-import UserInput from './UserInput/UserInput';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Person from '../components/Persons/Person/Person';
+import UserOutput from '../components/UserOutput/UserOutput';
+import UserInput from '../components/UserInput/UserInput';
 
 class App extends Component {
   state = {
@@ -94,7 +93,6 @@ class App extends Component {
     }
 
     return (
-      <ErrorBoundary>
         <div className={classes.App}>
           <h1>React App</h1>
           <p className=''>App is working with React!</p>
@@ -108,7 +106,6 @@ class App extends Component {
             <p paragraphData={this.state.childContent}>sample text</p>
           </Person> */}
         </div>
-      </ErrorBoundary>
     );
   }
 }
