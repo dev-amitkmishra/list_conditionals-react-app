@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 import UserOutput from '../components/UserOutput/UserOutput';
 import UserInput from '../components/UserInput/UserInput';
 
@@ -76,23 +77,18 @@ class App extends Component {
   render() {
 
     let persons = null;
-    let btnClass = '';
     if(this.state.isToggle) {
-      persons = (
-        <div>
-          <Persons users={this.state.users}
-            changed={this.changeHandler} 
-            clicked={this.deleteHandler}/>
-        </div>
-      )
-      btnClass = classes.Red;
+      persons = <Persons users={this.state.users}
+                  changed={this.changeHandler} 
+                  clicked={this.deleteHandler}/>;
     }
 
     return (
         <div className={classes.App}>
-          <h1>React App</h1>
-          <p className=''>App is working with React!</p>
-          <button className={btnClass} onClick={this.toggleEventHandler}>Click Me</button>
+        <Cockpit 
+          toggle={this.toggleEventHandler}
+          showPersons={this.state.showPersons}
+          users={this.state.users}/>
           {persons}
           <UserOutput username={this.state.username[0].name}/>
           <UserOutput username={this.state.username[1].name} />
