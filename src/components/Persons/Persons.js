@@ -41,6 +41,9 @@ class Persons extends Component {
             name = {
                 user.name
             }
+            age = {
+                user.age
+            }
             key = {
                 user.id
             }

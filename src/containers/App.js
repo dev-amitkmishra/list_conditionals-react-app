@@ -35,8 +35,9 @@ class App extends Component {
     content: 'I have started learning React.js',
     childContent: 'sample text for child',
     isToggle: false,
+    toggleCounter: 0,
     users: [
-      {id: 1, name: 'Amit', age: 30},
+      {id: 1, name: 'Amit', age: '30'},
       {id: 2, name: 'Amit1', age: 31},
       {id: 3, name: 'Amit2', age: 32}
     ],
@@ -87,10 +88,15 @@ class App extends Component {
   }
 
   toggleEventHandler = (event) => {
-    // debugger;
     const isToggle = this.state.isToggle;
-    this.setState({
-      isToggle : !isToggle
+
+    // this is best practice to update data. because, it may happen if we have more than 1 component where we are setting states, then even if we are setting state here
+    // other components setState method will complete first, as all setState work in async manner.
+    this.setState((prevState, props) => {
+      return {
+        isToggle : !isToggle,
+        toggleCounter: prevState.toggleCounter + 1
+      }
     })
   }
 
