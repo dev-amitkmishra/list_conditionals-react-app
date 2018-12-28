@@ -1,0 +1,31 @@
+Component lifecycle:-
+---------------------
+
+1. constructor
+2. componentWillMount
+3. render
+4. child components
+5. render
+6. componentDidMount(any server side call, i.e- ajax, can happen here)
+7. componentWillUnmount (when componet will be removed from DOM)
+
+
+
+component lifecycle - update (triggered by parent)
+--------------------------------------------------
+
+1. componentWillReceiveProps(nextProps)
+2. shouldComponentUpdate(nextProps, nextState) -> may be cancelled
+3. componentWillUpdate(nextProps, nextState)
+4. render
+5. update child component props
+6. componentDidUpdate()
+
+component lifecycle - update (triggered by internal change)
+-----------------------------------------------------------
+
+1. shouldComponentUpdate(nextProps, nextState) -> may be cancelled
+2. componentWillUpdate()
+3. render()
+4. update child component props
+5. componentDidUpdate()

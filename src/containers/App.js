@@ -4,8 +4,33 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import UserOutput from '../components/UserOutput/UserOutput';
 import UserInput from '../components/UserInput/UserInput';
+import Aux from '../hoc/_Aux';
+import AcceptClasses from '../hoc/acceptClasses';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('App.js inside constructor', props);
+    // props.title
+  }
+
+  componentWillMount() {
+    console.log('app.js inside componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('app.js inside componentDidMount');
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('update app.js inside shouldComponentUpdate');
+    return true;
+  }
+  componentWillUpdate(nextProps, nextState) {
+    console.log('update app.js inside componentWillUpdate');
+  }
+  componentDidUpdate() {
+    console.log('update app.js inside componentDidUpdate');
+  }
   state = {
     content: 'I have started learning React.js',
     childContent: 'sample text for child',
@@ -75,7 +100,7 @@ class App extends Component {
     this.setState({users: users});
   }
   render() {
-
+    console.log('app.js inside render');
     let persons = null;
     if(this.state.isToggle) {
       persons = <Persons users={this.state.users}
@@ -84,18 +109,20 @@ class App extends Component {
     }
 
     return (
-        <div className={classes.App}>
-        <Cockpit 
-          toggle={this.toggleEventHandler}
-          showPersons={this.state.showPersons}
-          users={this.state.users}/>
-          {persons}
-          <UserOutput username={this.state.username[0].name}/>
-          <UserOutput username={this.state.username[1].name} />
-          <UserInput eventHandle={this.eventHandler}  name={this.state.username[0].name}/>
-        </div>
+        <Aux>
+          <button onClick={() => {this.setState({isToggle: true})}}>Toggle Me</button>
+          <Cockpit 
+            appTitle= {this.props.title}
+            toggle={this.toggleEventHandler}
+            showPersons={this.state.showPersons}
+            users={this.state.users}/>
+            {persons}
+            <UserOutput username={this.state.username[0].name}/>
+            <UserOutput username={this.state.username[1].name} />
+            <UserInput eventHandle={this.eventHandler}  name={this.state.username[0].name}/>
+        </Aux>
     );
   }
 }
 
-export default App;
+export default AcceptClasses(App, classes.App);
