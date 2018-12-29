@@ -7,6 +7,8 @@ import UserInput from '../components/UserInput/UserInput';
 import Aux from '../hoc/_Aux';
 import AcceptClasses from '../hoc/acceptClasses';
 
+export const AuthContext = React.createContext(false);
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -14,23 +16,23 @@ class App extends Component {
     // props.title
   }
 
-  componentWillMount() {
-    console.log('app.js inside componentWillMount');
-  }
+  // componentWillMount() {
+  //   console.log('app.js inside componentWillMount');
+  // }
 
-  componentDidMount() {
-    console.log('app.js inside componentDidMount');
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('update app.js inside shouldComponentUpdate');
-    return true;
-  }
-  componentWillUpdate(nextProps, nextState) {
-    console.log('update app.js inside componentWillUpdate');
-  }
-  componentDidUpdate() {
-    console.log('update app.js inside componentDidUpdate');
-  }
+  // componentDidMount() {
+  //   console.log('app.js inside componentDidMount');
+  // }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('update app.js inside shouldComponentUpdate');
+  //   return true;
+  // }
+  // componentWillUpdate(nextProps, nextState) {
+  //   console.log('update app.js inside componentWillUpdate');
+  // }
+  // componentDidUpdate() {
+  //   console.log('update app.js inside componentDidUpdate');
+  // }
   state = {
     content: 'I have started learning React.js',
     childContent: 'sample text for child',
@@ -108,6 +110,7 @@ class App extends Component {
   }
 
   loginHandler = () => {
+    // debugger;
     this.setState({
       authenticated: true
     })
@@ -116,10 +119,8 @@ class App extends Component {
     console.log('app.js inside render');
     let persons = null;
     if(this.state.isToggle) {
-      debugger;
       persons = <Persons users={this.state.users}
                   changed={this.changeHandler}
-                  isAuthenticated={this.state.authenticated}
                   clicked={this.deleteHandler}/>;
     }
 
@@ -132,7 +133,9 @@ class App extends Component {
             showPersons={this.state.showPersons}
             login= {this.loginHandler}
             users={this.state.users}/>
-            {persons}
+
+            <AuthContext.Provider value={this.state.authenticated}>{persons}</AuthContext.Provider>
+            
             <UserOutput username={this.state.username[0].name}/>
             <UserOutput username={this.state.username[1].name} />
             <UserInput eventHandle={this.eventHandler}  name={this.state.username[0].name}/>

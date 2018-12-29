@@ -4,6 +4,7 @@ import classes from './Person.css';
 import FontAwesome from 'react-fontawesome';
 import AcceptClasses from '../../../hoc/acceptClasses';
 import Aux from '../../../hoc/_Aux';
+import { AuthContext } from '../../../containers/App';
 
 class Person extends Component {
     constructor(props) {
@@ -28,10 +29,11 @@ class Person extends Component {
       }
     render() {
         console.log('Person.js inside render');
-        debugger;
         return (
             <Aux>
-                {this.props.isAuthenticated ? <p>Authenticated</p> : null}
+                <AuthContext.Consumer>
+                    {auth => auth ? <p>Authenticated</p> : null}
+                </AuthContext.Consumer>
                 <FontAwesome name='trash' className={classes.remove} onClick={this.props.clicked}/>
                 <p>my name is {this.props.name} and age is {this.props.age}</p>
                 <input 
