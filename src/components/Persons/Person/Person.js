@@ -9,27 +9,35 @@ class Person extends Component {
     constructor(props) {
         super(props);
         console.log('Person.js inside constructor', props);
+        // this.userInputElement = React.createRef();
       }
     
       componentWillMount() {
         console.log('Person.js inside componentWillMount');
       }
     
-      componentDidMount() {
+      componentDidMount(index) {
         console.log('Person.js inside componentDidMount');
-        // if () {
-        //     this.userInputElement
+        // if (this.props.position === 0) {
+        //     this.userInputElement.current.focus();
         // }
+      }
+
+      focus() {
+        this.userInputElement.current.focus();
       }
     render() {
         console.log('Person.js inside render');
+        debugger;
         return (
             <Aux>
+                {this.props.isAuthenticated ? <p>Authenticated</p> : null}
                 <FontAwesome name='trash' className={classes.remove} onClick={this.props.clicked}/>
                 <p>my name is {this.props.name} and age is {this.props.age}</p>
                 <input 
                     type="text" 
-                    ref={(input) => {this.userInputElement = input}}
+                    // ref={(input) => {this.userInputElement = input}}
+                    // ref = {this.userInputElement}
                     onChange={this.props.changed} 
                     defaultValue={this.props.name}/>
             </Aux>

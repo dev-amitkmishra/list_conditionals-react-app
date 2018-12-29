@@ -10,6 +10,7 @@ const cockpit = (props) => {
                 <h1>{props.appTitle}</h1>
                 <p className=''>App is working with React!</p>
                 <button className={btnClass} onClick={props.toggle}>Click Me</button>
+                <button onClick={props.login}>Log In</button>
             </div>
         </Aux>
     )

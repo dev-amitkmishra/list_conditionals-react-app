@@ -35,9 +35,10 @@ class App extends Component {
     content: 'I have started learning React.js',
     childContent: 'sample text for child',
     isToggle: false,
+    authenticated: false,
     toggleCounter: 0,
     users: [
-      {id: 1, name: 'Amit', age: '30'},
+      {id: 1, name: 'Amit', age: 30},
       {id: 2, name: 'Amit1', age: 31},
       {id: 3, name: 'Amit2', age: 32}
     ],
@@ -105,12 +106,20 @@ class App extends Component {
     users.splice(pIndex, 1);
     this.setState({users: users});
   }
+
+  loginHandler = () => {
+    this.setState({
+      authenticated: true
+    })
+  }
   render() {
     console.log('app.js inside render');
     let persons = null;
     if(this.state.isToggle) {
+      debugger;
       persons = <Persons users={this.state.users}
-                  changed={this.changeHandler} 
+                  changed={this.changeHandler}
+                  isAuthenticated={this.state.authenticated}
                   clicked={this.deleteHandler}/>;
     }
 
@@ -121,6 +130,7 @@ class App extends Component {
             appTitle= {this.props.title}
             toggle={this.toggleEventHandler}
             showPersons={this.state.showPersons}
+            login= {this.loginHandler}
             users={this.state.users}/>
             {persons}
             <UserOutput username={this.state.username[0].name}/>

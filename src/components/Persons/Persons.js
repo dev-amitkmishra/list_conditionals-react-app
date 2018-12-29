@@ -2,12 +2,14 @@ import React, {
     Component
 } from 'react';
 import Person from './Person/Person';
+// import AcceptClasses from '../../hoc/acceptClasses';
+// import classes from './Persons.css';
 
 class Persons extends Component {
     constructor(props) {
         super(props);
         console.log('Persons.js inside constructor', props);
-        // props.title
+        this.lastUserRef = React.createRef();
     }
 
     componentWillMount() {
@@ -33,17 +35,24 @@ class Persons extends Component {
     }
     componentDidUpdate() {
         console.log('update persons.js inside componentDidUpdate');
+        // this.lastUserRef.current.focus();
     }
     render() {
         console.log('Persons.js inside render');
         return this.props.users.map((user, index) => {
+            debugger;
             return <Person
             name = {
                 user.name
             }
+            position = {
+                index
+            }
+            ref={this.lastUserRef}
             age = {
                 user.age
             }
+            isAuthenticated = {this.props.isAuthenticated}
             key = {
                 user.id
             }
